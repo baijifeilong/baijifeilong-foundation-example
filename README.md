@@ -63,7 +63,8 @@ public class BaijifeilongFoundationExampleApplication extends AbstractBaseContro
 运行`main`函数启动此项目，访问根接口(`GET /`)，可以随机生成状态码`200`与`500`的两种响应。示例:
 
 ```bash
-bj@localhost$ http get :8080/
+http get :8080/
+
 HTTP/1.1 200
 Content-Type: application/json;charset=UTF-8
 Date: Fri, 19 Apr 2019 07:26:55 GMT
@@ -73,7 +74,8 @@ Transfer-Encoding: chunked
     "data": "Hey, lucky man"
 }
 
-bj@localhost$ http get :8080/
+http get :8080/
+
 HTTP/1.1 500
 Connection: close
 Content-Type: application/json;charset=UTF-8
