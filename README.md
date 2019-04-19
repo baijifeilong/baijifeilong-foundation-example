@@ -1,6 +1,6 @@
 # BaijifeilongFoundationExample
 
-BaijifeilongFoundation使用示例
+[BaijifeilongFoundation](https://github.com/baijifeilong/baijifeilong-foundation)使用示例
 
 ## 最佳实践步骤
 
