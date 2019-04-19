@@ -97,3 +97,7 @@ spring:
   mvc:
     throw-exception-if-no-handler-found: true
 ```
+
+## 协议
+
+GPL-3.0
