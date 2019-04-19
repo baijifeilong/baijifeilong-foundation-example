@@ -98,6 +98,115 @@ spring:
     throw-exception-if-no-handler-found: true
 ```
 
+### 5. REST客户端演示
+
+```java
+package io.github.baijifeilong.foundation.example.controller;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.ImmutableMap;
+import io.github.baijifeilong.foundation.http.RestHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * Created by BaiJiFeiLong@gmail.com at 2019-04-19 15:57
+ */
+@org.springframework.web.bind.annotation.RestController
+@Slf4j
+public class RestController extends BaseController {
+
+    private final RestHelper restHelper;
+
+    public RestController(RestHelper restHelper) {
+        this.restHelper = restHelper;
+    }
+
+    @RequestMapping("/rest")
+    public Object doIt() {
+        JsonNode jsonNode = restHelper.doGet("https://httpbin.org/get", ImmutableMap.of("hello", "world"));
+        log.info("{}", jsonNode);
+        return successOf(jsonNode);
+    }
+}
+```
+
+请求与响应示例:
+
+```bash
+http get :8080/rest
+
+HTTP/1.1 200
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 19 Apr 2019 08:05:40 GMT
+Transfer-Encoding: chunked
+
+{
+    "data": {
+        "args": {
+            "hello": "world"
+        },
+        "headers": {
+            "Accept-Encoding": "gzip",
+            "Host": "httpbin.org",
+            "User-Agent": "okhttp/3.14.1"
+        },
+        "origin": "201.19.27.241, 201.19.27.241",
+        "url": "https://httpbin.org/get?hello=world"
+    }
+}
+```
+
+### 6. 缓存服务演示
+
+```java
+package io.github.baijifeilong.foundation.example.controller;
+
+import io.github.baijifeilong.foundation.cache.CacheHelper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * Created by BaiJiFeiLong@gmail.com at 2019-04-19 16:00
+ */
+@RestController
+public class CacheController extends BaseController {
+
+    private final CacheHelper cacheHelper;
+
+    public CacheController(CacheHelper cacheHelper) {
+        this.cacheHelper = cacheHelper;
+    }
+
+    @RequestMapping("/cache")
+    public Object service() {
+        Point point = cacheHelper.takeOrPutWithTimeOut("point", () -> new Point(11, 11), 1, TimeUnit.MINUTES);
+        return successOf(point);
+    }
+}
+```
+
+请求与响应示例:
+
+```bash
+http get :8080/cache
+
+HTTP/1.1 200
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 19 Apr 2019 08:05:56 GMT
+Transfer-Encoding: chunked
+
+{
+    "data": {
+        "x": 11.0,
+        "y": 11.0
+    }
+}
+```
+
 ## 协议
 
 GPL-3.0
