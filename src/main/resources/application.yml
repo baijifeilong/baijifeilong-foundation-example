@@ -5,8 +5,3 @@ baijifeilong:
       not-found-exception-code: 44444
       default-exception-message-template: '服务器开小差了: %s'
       not-found-exception-message-template: '请求的接口不存在: %s'
-spring:
-  resources:
-    add-mappings: false
-  mvc:
-    throw-exception-if-no-handler-found: true

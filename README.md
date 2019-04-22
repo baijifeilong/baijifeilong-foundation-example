@@ -90,17 +90,7 @@ Transfer-Encoding: chunked
 
 可见，接口封装和全局异常处理都已生效
 
-### 4. 处理404异常
-
-```yaml
-spring:
-  resources:
-    add-mappings: false
-  mvc:
-    throw-exception-if-no-handler-found: true
-```
-
-### 5. REST客户端演示
+### 4. REST客户端演示
 
 ```java
 package io.github.baijifeilong.foundation.example.controller;
@@ -159,7 +149,7 @@ Transfer-Encoding: chunked
 }
 ```
 
-### 6. 缓存服务演示
+### 5. 缓存服务演示
 
 ```java
 package io.github.baijifeilong.foundation.example.controller;
