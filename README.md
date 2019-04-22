@@ -16,7 +16,7 @@
         <dependency>
             <groupId>io.github.baijifeilong</groupId>
             <artifactId>baijifeilong-foundation</artifactId>
-            <version>1.2.1.RELEASE</version>
+            <version>1.3.0.RELEASE</version>
         </dependency>
     </dependencies>
 

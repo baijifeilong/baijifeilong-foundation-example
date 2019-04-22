@@ -21,7 +21,7 @@ public class CacheController extends BaseController {
 
     @RequestMapping("/cache")
     public Object service() {
-        Point point = cacheHelper.takeOrPutWithTimeOut("point", () -> new Point(11, 11), 1, TimeUnit.MINUTES);
+        Point point = cacheHelper.takeOrPutWithTtl("point", () -> new Point(11, 11), 1, TimeUnit.MINUTES);
         return successOf(point);
     }
 }
